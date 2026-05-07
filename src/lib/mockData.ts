@@ -1,0 +1,238 @@
+import type { Service, Order, Conversation, Wallet, Dispute, AdminStats, User } from '../types';
+
+export const currentUser: User = {
+  id: 'u1',
+  name: 'Arjun Kumar',
+  email: 'arjun.kumar@woxsen.edu.in',
+  university: 'Woxsen University',
+  year: '3rd year',
+  branch: 'B.Tech CSE',
+  avatar_initials: 'AK',
+  rating: 4.9,
+  review_count: 24,
+  total_earned: 8200,
+  orders_completed: 31,
+  skills: [
+    { name: 'React.js', level: 'expert' },
+    { name: 'Node.js', level: 'expert' },
+    { name: 'Python', level: 'expert' },
+    { name: 'Figma', level: 'intermediate' },
+    { name: 'MongoDB', level: 'intermediate' },
+    { name: 'SQL', level: 'beginner' },
+  ],
+  badges: [
+    { label: 'Top Seller', icon: '🏆', type: 'success' },
+    { label: 'Fast Delivery', icon: '⚡', type: 'info' },
+    { label: 'Rising Star', icon: '🌟', type: 'warn' },
+  ],
+  is_admin: false,
+  created_at: '2024-01-15',
+};
+
+export const mockServices: Service[] = [
+  {
+    id: 's1',
+    title: 'React landing page',
+    description: 'Clean, responsive landing page with animations. Delivered in 3 days.',
+    category: 'Web Dev',
+    price: 800,
+    delivery_days: 3,
+    seller_id: 'u2',
+    seller_name: 'Rahul',
+    seller_initials: 'R',
+    seller_rating: 5,
+    is_active: true,
+    created_at: '2024-02-01',
+  },
+  {
+    id: 's2',
+    title: 'Logo & brand identity',
+    description: '3 logo concepts with brand color palette. Delivered in 2 days.',
+    category: 'Design',
+    price: 500,
+    delivery_days: 2,
+    seller_id: 'u3',
+    seller_name: 'Priya',
+    seller_initials: 'P',
+    seller_rating: 4,
+    is_active: true,
+    created_at: '2024-02-03',
+  },
+  {
+    id: 's3',
+    title: 'Research paper editing',
+    description: 'Grammar, structure & citation formatting. Up to 5000 words.',
+    category: 'Writing',
+    price: 300,
+    delivery_days: 2,
+    seller_id: 'u4',
+    seller_name: 'Ananya',
+    seller_initials: 'A',
+    seller_rating: 5,
+    is_active: true,
+    created_at: '2024-02-05',
+  },
+  {
+    id: 's4',
+    title: 'YouTube reel editing',
+    description: 'Cuts, transitions, captions & music. Up to 3 min video.',
+    category: 'Video',
+    price: 600,
+    delivery_days: 3,
+    seller_id: 'u5',
+    seller_name: 'Karan',
+    seller_initials: 'K',
+    seller_rating: 4,
+    is_active: true,
+    created_at: '2024-02-06',
+  },
+  {
+    id: 's5',
+    title: 'Python data analysis script',
+    description: 'Pandas + visualization for your dataset. Delivered in 2 days.',
+    category: 'Web Dev',
+    price: 700,
+    delivery_days: 2,
+    seller_id: 'u6',
+    seller_name: 'Sneha',
+    seller_initials: 'S',
+    seller_rating: 5,
+    is_active: true,
+    created_at: '2024-02-07',
+  },
+];
+
+export const mockOrders: Order[] = [
+  {
+    id: '1042',
+    service_id: 's1',
+    service_title: 'React landing page',
+    buyer_id: 'u1',
+    buyer_name: 'Arjun Kumar',
+    seller_id: 'u2',
+    seller_name: 'Rahul',
+    price: 800,
+    status: 'in_progress',
+    created_at: '2024-02-10',
+    updated_at: '2024-02-11',
+  },
+  {
+    id: '1038',
+    service_id: 's2',
+    service_title: 'Logo & brand identity',
+    buyer_id: 'u1',
+    buyer_name: 'Arjun Kumar',
+    seller_id: 'u3',
+    seller_name: 'Priya',
+    price: 500,
+    status: 'completed',
+    rating: 5,
+    review: 'Excellent work, very professional!',
+    created_at: '2024-02-05',
+    updated_at: '2024-02-08',
+  },
+  {
+    id: '1031',
+    service_id: 's3',
+    service_title: 'Research paper editing',
+    buyer_id: 'u1',
+    buyer_name: 'Arjun Kumar',
+    seller_id: 'u4',
+    seller_name: 'Ananya',
+    price: 300,
+    status: 'completed',
+    rating: 4,
+    created_at: '2024-01-28',
+    updated_at: '2024-01-30',
+  },
+  {
+    id: '1045',
+    service_id: 's5',
+    service_title: 'Python data script',
+    buyer_id: 'u1',
+    buyer_name: 'Arjun Kumar',
+    seller_id: 'u6',
+    seller_name: 'Sneha',
+    price: 700,
+    status: 'pending',
+    created_at: '2024-02-12',
+    updated_at: '2024-02-12',
+  },
+];
+
+export const mockConversations: Conversation[] = [
+  {
+    order_id: '1042',
+    order_title: 'React landing page',
+    other_user_name: 'Rahul K.',
+    other_user_initials: 'RK',
+    last_message: "Sure, I'll send the draft by tomorrow",
+    last_message_at: '2024-02-11T14:30:00',
+    messages: [
+      { id: 'm1', order_id: '1042', sender_id: 'u2', sender_name: 'Rahul', content: 'Hey! I started working on the layout. Do you have any brand colors in mind?', created_at: '2024-02-11T10:00:00' },
+      { id: 'm2', order_id: '1042', sender_id: 'u1', sender_name: 'Arjun', content: 'Yes, I\'d like blue and white mainly. Clean and professional look.', created_at: '2024-02-11T10:15:00' },
+      { id: 'm3', order_id: '1042', sender_id: 'u2', sender_name: 'Rahul', content: 'Perfect. I\'ll use a navy + white palette. Any reference sites you like?', created_at: '2024-02-11T10:20:00' },
+      { id: 'm4', order_id: '1042', sender_id: 'u1', sender_name: 'Arjun', content: "Something like Linear.app's style would be great!", created_at: '2024-02-11T11:00:00' },
+      { id: 'm5', order_id: '1042', sender_id: 'u2', sender_name: 'Rahul', content: "Sure, I'll send the draft by tomorrow.", created_at: '2024-02-11T14:30:00' },
+    ],
+  },
+  {
+    order_id: '1038',
+    order_title: 'Logo & brand identity',
+    other_user_name: 'Priya S.',
+    other_user_initials: 'PS',
+    last_message: 'Logo is ready, check your email!',
+    last_message_at: '2024-02-08T09:00:00',
+    messages: [
+      { id: 'm6', order_id: '1038', sender_id: 'u3', sender_name: 'Priya', content: 'Logo is ready, check your email!', created_at: '2024-02-08T09:00:00' },
+    ],
+  },
+  {
+    order_id: '1031',
+    order_title: 'Research paper editing',
+    other_user_name: 'Ananya M.',
+    other_user_initials: 'AM',
+    last_message: 'Can you share the paper?',
+    last_message_at: '2024-01-28T12:00:00',
+    messages: [
+      { id: 'm7', order_id: '1031', sender_id: 'u4', sender_name: 'Ananya', content: 'Can you share the paper?', created_at: '2024-01-28T12:00:00' },
+    ],
+  },
+];
+
+export const mockWallet: Wallet = {
+  balance: 2450,
+  escrow_held: 800,
+  transactions: [
+    { id: 't1', user_id: 'u1', type: 'deposit', amount: 1000, description: 'Added funds', created_at: '2024-02-10' },
+    { id: 't2', user_id: 'u1', type: 'escrow_hold', amount: -800, description: 'Order #1042 — Escrow hold', order_id: '1042', created_at: '2024-02-10' },
+    { id: 't3', user_id: 'u1', type: 'escrow_release', amount: -500, description: 'Order #1038 — Payment released', order_id: '1038', created_at: '2024-02-08' },
+    { id: 't4', user_id: 'u1', type: 'deposit', amount: 2000, description: 'Added funds', created_at: '2024-02-05' },
+    { id: 't5', user_id: 'u1', type: 'refund', amount: 300, description: 'Order #1031 — Refund', order_id: '1031', created_at: '2024-01-30' },
+  ],
+};
+
+export const mockDisputes: Dispute[] = [
+  { id: 'd1', order_id: '1038', order_title: 'Logo & brand identity', raised_by: 'buyer', reason: 'Work not as described', status: 'open', created_at: '2024-02-09' },
+  { id: 'd2', order_id: '1035', order_title: 'Video editing', raised_by: 'seller', reason: 'Buyer unresponsive', status: 'open', created_at: '2024-02-07' },
+];
+
+export const mockAdminStats: AdminStats = {
+  total_users: 186,
+  gmv_this_month: 42000,
+  commission_earned: 5800,
+  open_disputes: 3,
+};
+
+export const mockAdminUsers = [
+  { id: 'u2', name: 'Rahul K.', role: 'Seller', status: 'active' },
+  { id: 'u3', name: 'Priya S.', role: 'Seller', status: 'active' },
+  { id: 'u7', name: 'Rishi M.', role: 'Buyer', status: 'flagged' },
+];
+
+export const categoryPricing = [
+  { category: 'Web Dev', max_price: 800 },
+  { category: 'Design', max_price: 500 },
+  { category: 'Writing', max_price: 300 },
+  { category: 'Video', max_price: 600 },
+];
